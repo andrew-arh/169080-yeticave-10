@@ -43,14 +43,13 @@ $lots = [
 ];
 
 function format_price($price){
-    if ( isset( $price ) and is_numeric( $price ) ) {
-        $price = ceil( $price );
-        if ( mb_strlen( $price ) < 4 ) {
-            return $price . ' ' . '<b class="rub">р</b>';
-        } else {
-            return number_format( $price, 0, ',', ' ' ) . ' ' . '<b class="rub">р</b>';
-        }
+    $price = ceil( $price );
+    
+    if ( $price > 1000 ) {
+        $price = number_format( $price, 0, ',', ' ' );
     }
+    
+    return $price . ' ' . '₽';
 }
 ?>
 <!DOCTYPE html>
